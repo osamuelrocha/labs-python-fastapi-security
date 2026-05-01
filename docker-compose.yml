@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  auth:
+    build: .
+    container_name: followup-auth-api
+    ports:
+      - "8001:8001"
+    command: uvicorn auth_api.main:app --host 0.0.0.0 --port 8001
+    environment:
+      - PYTHONPATH=/app/src
+
+  followup:
+    build: .
+    container_name: followup-followup-api
+    ports:
+      - "8002:8002"
+    command: uvicorn followup_api.main:app --host 0.0.0.0 --port 8002
+    environment:
+      - PYTHONPATH=/app/src
+    depends_on:
+      - auth

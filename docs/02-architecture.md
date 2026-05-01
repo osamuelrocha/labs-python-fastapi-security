@@ -45,7 +45,7 @@ Responsável por:
 ## 🔄 Fluxo
 
 ```text
-Client → API → Service → Core → Response
+Client → Auth API → JWT → FollowUp API → Response
 ```
 
 ---
@@ -54,11 +54,9 @@ Client → API → Service → Core → Response
 
 ```text
 src/
- ├── api/
- ├── core/
- ├── models/
- ├── services/
- └── main.py
+ ├── auth_api/          → Serviço de autenticação
+ ├── followup_api/      → Serviço de follow-up
+ └── app/               → Código compartilhado: api, core, models, services
 ```
 
 ---

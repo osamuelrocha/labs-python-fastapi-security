@@ -11,10 +11,10 @@ A API utiliza autenticação baseada em:
 
 ## 🔄 Fluxo de autenticação
 
-1. Cliente envia credenciais
-2. API valida usuário
-3. API gera token JWT
-4. Cliente usa token nos próximos requests
+1. Cliente envia credenciais para a `Auth API`
+2. `Auth API` valida usuário
+3. `Auth API` gera token JWT
+4. Cliente usa token nos próximos requests ao `FollowUp API`
 
 ---
 

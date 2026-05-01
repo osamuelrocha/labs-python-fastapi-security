@@ -17,15 +17,18 @@ Este projeto tem como objetivo demonstrar:
 
 ## 🧱 Arquitetura
 
-O projeto segue uma estrutura inspirada em boas práticas de organização:
+O projeto está agora segmentado em dois serviços independentes:
+
+* `Auth API` — responsável pela emissão de JWT
+* `FollowUp API` — responsável por receber follow-ups autorizados
+
+A estrutura do repositório fica assim:
 
 ```
-app/
- ├── api/        → Rotas e dependências
- ├── core/       → Configurações e segurança
- ├── models/     → Schemas (Pydantic)
- ├── services/   → Regras de negócio
- └── main.py     → Entry point
+src/
+ ├── auth_api/          → Serviço FastAPI de autenticação
+ ├── followup_api/      → Serviço FastAPI de follow-up
+ └── app/               → Código compartilhado (routes, core, models, services)
 ```
 
 ---
@@ -70,14 +73,25 @@ Body:
 
 ## ▶️ Executando o projeto
 
+### Localmente
+
 ```bash
+cd src
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn auth_api.main:app --reload --host 0.0.0.0 --port 8001
+uvicorn followup_api.main:app --reload --host 0.0.0.0 --port 8002
+```
+
+### Com Docker
+
+```bash
+docker compose up --build
 ```
 
 Acesse:
 
-* Swagger: http://localhost:8000/docs
+* Auth API Swagger: http://localhost:8001/docs
+* FollowUp API Swagger: http://localhost:8002/docs
 
 ---
 
